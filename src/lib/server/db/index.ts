@@ -5,7 +5,8 @@ import path from 'path';
 import { DB_PATH } from '$env/static/private';
 import type { Track, Album, AlbumTrack } from './types';
 
-const db = new Database(DB_PATH, { verbose: console.log });
+//const db = new Database(DB_PATH, { verbose: console.log });
+const db = new Database(DB_PATH);
 
 const __dirname = '/renderws/carltonData/cj2023/code/svelte/svelte-sqlite-ex1';
 
@@ -28,4 +29,12 @@ export async function getAlbum(albumId: string) {
 export async function getTracks(albumId: string) {
   const rows = (await getStmnt('albumTracks.sql')).all({ albumId });
   return rows as AlbumTrack[];
+}
+
+export async function updateAlbum(title: string, id: number) {
+  (await getStmnt('albumTitleUpdate.sql')).run({ title, id });
+}
+
+export async function deleteAlbum(id: number) {
+  console.log('simulate delete on db');
 }

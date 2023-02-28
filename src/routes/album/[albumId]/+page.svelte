@@ -1,8 +1,10 @@
 <script lang="ts">
+	import { enhance } from '$app/forms';
+	import { invalidateAll } from '$app/navigation';
 	import type { PageData } from './$types';
 
 	export let data: PageData;
-	const { title, name } = data.album;
+	const { title, name, id } = data.album;
 
 	function millisToMinutesAndSeconds(millis: number) {
 		const minutes = Math.floor(millis / 60000);
@@ -17,6 +19,15 @@
 	<h5>{name}</h5>
 </div>
 
+<h2>Album Name Change</h2>
+<form method="post">
+	<input name="title" value={title} />
+	<input name="id" value={id} hidden />
+	<button type="submit" formaction="?/updateAlbumTitle">Change Name</button>
+	<button type="submit" formaction="?/deleteAlbum">Delete Album</button>
+</form>
+
+<h2>Album Tracks</h2>
 <table>
 	<thead>
 		<tr><th>Track #</th><th>Name</th><th>Time</th></tr>
