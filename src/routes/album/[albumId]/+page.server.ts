@@ -11,7 +11,7 @@ export const load = (async ({ params }) => {
     throw error(404, 'Invalid album (3)');
   }
   const album = await getAlbum(albumId);
-  if (!album.length) throw error(404, 'Invalid album (4)');
+  if (!album) throw error(404, 'Invalid album (4)');
   const tracks = await getTracks(albumId);
   return { album, tracks };
 }) satisfies PageServerLoad;

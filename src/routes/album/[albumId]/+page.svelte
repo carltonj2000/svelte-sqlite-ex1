@@ -5,9 +5,9 @@
 	const { title, name } = data.album;
 
 	function millisToMinutesAndSeconds(millis: number) {
-		var minutes = Math.floor(millis / 60000);
-		var seconds = ((millis % 60000) / 1000).toFixed(0);
-		return minutes + ':' + (seconds < 10 ? '0' : '') + seconds;
+		const minutes = Math.floor(millis / 60000);
+		const seconds = ((millis % 60000) / 1000).toFixed(0);
+		return minutes + ':' + (parseInt(seconds) < 10 ? '0' : '') + seconds;
 	}
 </script>
 
@@ -23,10 +23,11 @@
 	</thead>
 	<tbody>
 		{#each data.tracks as { name, ms }, i}
-			<tr
-				><td>{i + 1}</td><td>{name}</td><td>{millisToMinutesAndSeconds(ms)}</td
-				></tr
-			>
+			<tr>
+				<td>{i + 1}</td>
+				<td>{name}</td>
+				<td>{millisToMinutesAndSeconds(ms)}</td>
+			</tr>
 		{/each}
 	</tbody>
 </table>

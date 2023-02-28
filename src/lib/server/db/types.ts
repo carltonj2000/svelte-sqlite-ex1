@@ -11,7 +11,7 @@ export type Track = {
 export type Album = {
   id: number;
   title: string;
-  artistName: string;
+  name: string;
 };
 
 export type AlbumTrack = {

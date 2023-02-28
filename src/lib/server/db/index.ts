@@ -3,7 +3,7 @@ import * as fs from 'fs/promises';
 import path from 'path';
 
 import { DB_PATH } from '$env/static/private';
-import type { Track } from './types';
+import type { Track, Album, AlbumTrack } from './types';
 
 const db = new Database(DB_PATH, { verbose: console.log });
 
@@ -22,10 +22,10 @@ export async function getInitalTracks(limit = 50) {
 
 export async function getAlbum(albumId: string) {
   const rows = (await getStmnt('album.sql')).all({ albumId });
-  return rows as Album;
+  return rows[0] as Album;
 }
 
 export async function getTracks(albumId: string) {
   const rows = (await getStmnt('albumTracks.sql')).all({ albumId });
-  return rows as Track[];
+  return rows as AlbumTrack[];
 }
