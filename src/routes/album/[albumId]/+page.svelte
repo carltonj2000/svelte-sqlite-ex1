@@ -20,6 +20,7 @@
 </div>
 
 <h2>Album Name Change</h2>
+
 <form method="post">
 	<input name="title" value={title} />
 	<input name="id" value={id} hidden />

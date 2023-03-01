@@ -16,7 +16,7 @@ const getStmnt = async (sqlfn: string): Promise<Statement> => {
   const stmnt = db.prepare(sql);
   return stmnt;
 };
-export async function getInitalTracks(limit = 50) {
+export async function getInitialTracks(limit = 50) {
   const rows = (await getStmnt('tracks.sql')).all({ limit });
   return rows as Track[];
 }
@@ -36,5 +36,10 @@ export async function updateAlbum(title: string, id: number) {
 }
 
 export async function deleteAlbum(id: number) {
-  console.log('simulate delete on db');
+  console.log('simulate delete on db from', id);
+}
+
+export async function searchTracks(searchTerm: string, limit = 50) {
+  const rows = (await getStmnt('searchTracks.sql')).all({ searchTerm, limit });
+  return rows as Track[];
 }
