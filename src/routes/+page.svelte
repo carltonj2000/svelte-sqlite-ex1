@@ -24,7 +24,7 @@
 	type="search"
 	placeholder="Search ..."
 	value={searchTerm}
-	on:keyup={search}
+	on:input={search}
 />
 
 <table>
