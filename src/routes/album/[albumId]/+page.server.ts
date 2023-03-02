@@ -2,7 +2,7 @@ import { getAlbum, getTracks, updateAlbum, deleteAlbum } from '$lib/server/db';
 import { error, type Actions } from '@sveltejs/kit';
 import type { PageServerLoad } from './$types';
 
-export const load = (async ({ params }) => {
+export const load = (async ({ params, locals }) => {
   const { albumId } = params;
   if (!albumId) throw error(404, 'Invalid album (1)');
   try {
@@ -13,11 +13,14 @@ export const load = (async ({ params }) => {
   const album = await getAlbum(albumId);
   if (!album) throw error(404, 'Invalid album (4)');
   const tracks = await getTracks(albumId);
-  return { album, tracks };
+  return { album, tracks, isAdmin: locals?.roles?.includes('admin') };
 }) satisfies PageServerLoad;
 
 export const actions: Actions = {
-  updateAlbumTitle: async ({ request }) => {
+  updateAlbumTitle: async ({ request, locals }) => {
+    if (!locals.username || !locals?.roles?.includes('admin')) {
+      throw error(401, { message: 'Unauthorized' });
+    }
     const data = await request.formData();
     const title = data.get('title')?.toString()!;
     const id = parseInt(data.get('id')?.toString()!);
