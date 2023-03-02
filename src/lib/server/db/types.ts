@@ -19,3 +19,9 @@ export type AlbumTrack = {
   name: string;
   ms: number;
 };
+
+export type User = {
+  username: string;
+  password: string;
+  roles: string;
+};
