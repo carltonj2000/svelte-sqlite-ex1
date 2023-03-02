@@ -37,7 +37,9 @@ npx prisma generate
 
 ## Code History
 
-The code in this repository is based on the
-[SvelteKit 1.0 with SQLite Tutorial](https://youtu.be/iO4VUbQ6ua4)
-video.
+The code in this repository is based on the following videos.
+
+- [SvelteKit 1.0 with SQLite Tutorial](https://youtu.be/iO4VUbQ6ua4)
+- [Authentication and Authorization in SvelteKit 1 with SQLite](https://youtu.be/XRa-b5E7x8w)
+
 Use the [chinook sample db](https://www.sqlitetutorial.net/sqlite-sample-database/).
